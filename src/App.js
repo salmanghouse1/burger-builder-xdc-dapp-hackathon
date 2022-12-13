@@ -2,6 +2,10 @@ import logo from "./logo.svg";
 import "./App.css";
 
 function App() {
+  const [salad, setSalad] = useState(1);
+  const [bacon, setBacon] = useState(0);
+  const [cheese, setCheese] = useState(1);
+  const [meat, setMeat] = useState(1);
   return (
     <div className="App">
       <header className="App-header"></header>
