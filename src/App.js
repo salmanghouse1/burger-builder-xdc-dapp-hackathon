@@ -1,23 +1,50 @@
-import logo from './logo.svg';
-import './App.css';
+import logo from "./logo.svg";
+import "./App.css";
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <header className="App-header"></header>
+
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "space-around",
+          alignContent: "space-around",
+        }}
+      >
+        <div class="box">
+          <h1 style={{ textAlign: "center" }}>Burger Builder</h1>
+
+          <div class="bread-top">
+            <div class="seeds"></div>
+            <div class="seeds2"></div>
+          </div>
+          <div class="salad"></div>
+          <div class="salad"></div>
+          <div class="bacon"></div>
+          <div class="cheese"></div>
+          <div class="cheese"></div>
+          <div class="meat"></div>
+          <div class="meat"></div>
+          <div class="bread-bottom"></div>
+        </div>
+        <div>
+          <form class="burgerForm">
+            <h2>Add Your Toppings</h2>
+            <label>Salad</label>
+            <input type="number" max="3" />
+            <label>Bacon</label>
+            <input type="number" max="3" />
+
+            <label>Cheese</label>
+            <input type="number" max="3" />
+
+            <label>Meat</label>
+            <input type="number" />
+          </form>
+        </div>
+      </div>
     </div>
   );
 }
