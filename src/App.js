@@ -8,23 +8,34 @@ function App() {
   const [cheese, setCheese] = useState(1);
   const [meat, setMeat] = useState(1);
 
-  const renderedSalad = [];
+  let renderedSalad = [];
+
+  let renderedMeat = [];
+  let renderedCheese = [];
+  let renderedBacon = [];
+  let totalSalad = salad * 0.35;
+  let totalMeat = meat * 1.25;
+  let totalBacon = bacon * 0.45;
+  let totalCheese = cheese * 1.55;
+  let total = totalSalad + totalMeat + totalBacon + totalCheese;
+
+  // const next = () => {
+  //   console.log('next');
+  // };
   for (let i = 1; i <= salad; i++) {
     renderedSalad.push(<div class="salad"></div>);
   }
-  const renderedBacon = [];
   for (let i = 1; i <= bacon; i++) {
     renderedBacon.push(<div class="bacon"></div>);
   }
 
-  const renderedCheese = [];
   for (let i = 1; i <= cheese; i++) {
     renderedCheese.push(<div class="cheese"></div>);
   }
-  const renderedMeat = [];
   for (let i = 1; i <= meat; i++) {
     renderedMeat.push(<div class="meat"></div>);
   }
+
   return (
     <div className="App">
       <header className="App-header"></header>
@@ -71,7 +82,6 @@ function App() {
                 setBacon(e.target.value);
               }}
             />
-
             <label>Cheese</label>
             <input
               type="number"
@@ -81,7 +91,6 @@ function App() {
                 setCheese(e.target.value);
               }}
             />
-
             <label>Meat</label>
             <input
               value={meat}
@@ -91,6 +100,46 @@ function App() {
               type="number"
               max="4"
             />
+            <p>
+              <table class="GeneratedTable">
+                <thead>
+                  <tr>
+                    <th>Item</th>
+                    <th>Cost</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Salad:</td>
+                    <td>{totalSalad}</td>
+                  </tr>
+                  <tr>
+                    <td>Meat</td>
+                    <td>{totalMeat}</td>
+                  </tr>
+                  <tr>
+                    <td>Cheese</td>
+                    <td>{totalCheese}</td>
+                  </tr>
+                  <tr>
+                    <td>Bacon</td>
+                    <td>{totalBacon}</td>
+                  </tr>
+                  <tr>
+                    <td>Total</td>
+                    <td>${total}</td>
+                  </tr>
+                  <tr>
+                    <td>Cost</td>
+                    <td style={{ fontWeight: "bold" }}>
+                      Rounded:${Math.ceil(total)}
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </p>
+            <button type="submit">Order</button>
+            <p>Dont have XDC? Swap Eth for XDC now.</p>
           </form>
         </div>
       </div>

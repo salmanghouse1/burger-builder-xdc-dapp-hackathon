@@ -115,7 +115,28 @@
   padding-left:0;
   padding-right:150px;
 }
+table.GeneratedTable {
+  width: 100%;
+  background-color: #ffffff;
+  border-collapse: collapse;
+  border-width: 2px;
+  border-color: #ffcc00;
+  border-style: solid;
+  color: #000;
+}
 
+table.GeneratedTable td,
+table.GeneratedTable th {
+  border-width: 2px;
+  border-color: #ffcc00;
+  border-style: solid;
+  padding: 3px;
+}
+
+table.GeneratedTable thead {
+  background-color: #000000;
+  color:#fff;
+}
 .bread-bottom {
   height: 13%;
   width: 80%;
