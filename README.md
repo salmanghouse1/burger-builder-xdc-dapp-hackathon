@@ -23,7 +23,7 @@ node package manaager
 
 # Demo
 
-![caption](https://youtu.be/501Js7am9Uk / GIF)
+<a href="http://www.youtube.com/watch?feature=player_embedded&v=501Js7am9Uk" target="_blank"><img src="http://img.youtube.com/vi/501Js7am9Uk/0.jpg" alt="IMAGE ALT TEXT HERE" width="240" height="180" /></a>
 
 # Packages Used:
 
