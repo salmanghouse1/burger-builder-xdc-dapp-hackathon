@@ -13,6 +13,7 @@
     "react-scripts": "5.0.1",
     "solc": "^0.8.17",
     "web-vitals": "^2.1.4",
+    "web3": "^1.8.1",
     "web3-eth-contract": "^1.8.1",
     "web3-utils": "^1.8.1"
   },

@@ -1,10 +1,11 @@
 import logo from "./logo.svg";
 import { React, useState } from "react";
 import "./App.css";
-import web3 from "./web3";
+// import web3 from "./web3";
 
 function App() {
-  let web3 = new Web3(window.ethereum);
+  // uncomment for metamask
+  // let web3 = new Web3(window.ethereum);
 
   const [error, setError] = useState("");
 
@@ -24,29 +25,30 @@ function App() {
       console.log("Please Install Metamask");
     }
   };
-  const connectedContract = new ethers.Contract(
-    process.env.SMART_CONTRACT_ADDRESS,
-    escrowAbi.abi,
-    signer
-  );
+  // const connectedContract = new ethers.Contract(
+  //   process.env.SMART_CONTRACT_ADDRESS,
+  //   escrowAbi.abi,
+  //   signer
+  // );
 
   // function bellow to send frontend variable total amount to smart contract
 
-  // function sendAmountOrder(total){
-  // let owedAmount = await contract.getOwedAmount();
-  // owedAmount=owedAmount.toString()
-  // let transaction=await connectedContract.depositEth({value:total})
-  // await transaction.wait();}
+  function sendAmountOrder(total) {
+    console.log(total);
+    // bellow code uncomment later to connect to smartcontract
+    // let owedAmount = await contract.getOwedAmount();
+    // owedAmount=owedAmount.toString()
+    // let transaction=await connectedContract.depositEth({value:total})
+    // await transaction.wait();
+  }
 
   const [salad, setSalad] = useState(1);
   const [bacon, setBacon] = useState(0);
   const [cheese, setCheese] = useState(1);
   const [meat, setMeat] = useState(1);
-  const [total, setTotal] = useState(
-    totalSalad + totalMeat + totalBacon + totalCheese
-  );
-  let renderedSalad = [];
 
+  let renderedSalad = [];
+  // let total = totalSalad + totalMeat + totalBacon + totalCheese;
   let renderedMeat = [];
   let renderedCheese = [];
   let renderedBacon = [];
@@ -54,29 +56,32 @@ function App() {
   let totalMeat = meat * 1.25;
   let totalBacon = bacon * 0.45;
   let totalCheese = cheese * 1.55;
+  const [total, setTotal] = useState(
+    totalSalad + totalMeat + totalBacon + totalCheese
+  );
 
   // const next = () => {
   //   console.log('next');
   // };
   for (let i = 1; i <= salad; i++) {
-    renderedSalad.push(<div class="salad"></div>);
+    renderedSalad.push(<div className="salad"></div>);
   }
   for (let i = 1; i <= bacon; i++) {
-    renderedBacon.push(<div class="bacon"></div>);
+    renderedBacon.push(<div className="bacon"></div>);
   }
 
   for (let i = 1; i <= cheese; i++) {
-    renderedCheese.push(<div class="cheese"></div>);
+    renderedCheese.push(<div className="cheese"></div>);
   }
   for (let i = 1; i <= meat; i++) {
-    renderedMeat.push(<div class="meat"></div>);
+    renderedMeat.push(<div className="meat"></div>);
   }
 
   return (
-    <div className="App">
-      <header className="App-header">
+    <div classNameName="App">
+      <header classNameName="App-header">
         <button onClick={connectWalletHandler}></button>
-        <p style="color:red">{error}</p>
+        <p style={{ color: "red" }}>{error}</p>
       </header>
       <div
         style={{
@@ -85,22 +90,22 @@ function App() {
           alignContent: "space-around",
         }}
       >
-        <div class="box">
+        <div className="box">
           <h1 style={{ textAlign: "center" }}>Burger Builder</h1>
 
-          <div class="bread-top">
-            <div class="seeds"></div>
-            <div class="seeds2"></div>
+          <div className="bread-top">
+            <div className="seeds"></div>
+            <div className="seeds2"></div>
           </div>
 
           {renderedSalad}
           {renderedBacon}
           {renderedCheese}
           {renderedMeat}
-          <div class="bread-bottom"></div>
+          <div className="bread-bottom"></div>
         </div>
         <div>
-          <form class="burgerForm">
+          <form className="burgerForm">
             <h2>Add Your Toppings</h2>
             <label>Salad</label>
             <input
@@ -121,7 +126,6 @@ function App() {
               value={bacon}
               onChange={(e) => {
                 setBacon(e.target.value);
-
                 setTotal(totalSalad + totalMeat + totalBacon + totalCheese);
               }}
             />
@@ -133,8 +137,9 @@ function App() {
               value={cheese}
               onChange={(e) => {
                 setCheese(e.target.value);
-
                 setTotal(totalSalad + totalMeat + totalBacon + totalCheese);
+
+                // setTotal(totalSalad + totalMeat + totalBacon + totalCheese);
               }}
             />
             <label>Beef Patty</label>
@@ -142,15 +147,16 @@ function App() {
               value={meat}
               onChange={(e) => {
                 setMeat(e.target.value);
-
                 setTotal(totalSalad + totalMeat + totalBacon + totalCheese);
+
+                // setTotal(totalSalad + totalMeat + totalBacon + totalCheese);
               }}
               type="number"
               max="4"
               min="0"
             />
             <p>
-              <table class="GeneratedTable">
+              <table className="GeneratedTable">
                 <thead>
                   <tr>
                     <th>Item</th>
