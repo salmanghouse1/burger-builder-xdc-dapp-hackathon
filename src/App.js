@@ -1,13 +1,50 @@
 import logo from "./logo.svg";
 import { React, useState } from "react";
 import "./App.css";
+import web3 from "./web3";
 
 function App() {
+  let web3 = new Web3(window.ethereum);
+
+  const [error, setError] = useState("");
+
+  const connectWalletHandler = async () => {
+    // alert("Connect Wallet");
+    if (
+      typeof window !== "undefined" &&
+      typeof window.ethereum !== "undefined"
+    ) {
+      try {
+        await window.ethereum.request({ method: "eth_requestAccounts" });
+        // Will Implement XDC WALLET
+      } catch (err) {
+        setError(err.message);
+      }
+    } else {
+      console.log("Please Install Metamask");
+    }
+  };
+  const connectedContract = new ethers.Contract(
+    process.env.SMART_CONTRACT_ADDRESS,
+    escrowAbi.abi,
+    signer
+  );
+
+  // function bellow to send frontend variable total amount to smart contract
+
+  // function sendAmountOrder(total){
+  // let owedAmount = await contract.getOwedAmount();
+  // owedAmount=owedAmount.toString()
+  // let transaction=await connectedContract.depositEth({value:total})
+  // await transaction.wait();}
+
   const [salad, setSalad] = useState(1);
   const [bacon, setBacon] = useState(0);
   const [cheese, setCheese] = useState(1);
   const [meat, setMeat] = useState(1);
-
+  const [total, setTotal] = useState(
+    totalSalad + totalMeat + totalBacon + totalCheese
+  );
   let renderedSalad = [];
 
   let renderedMeat = [];
@@ -17,7 +54,6 @@ function App() {
   let totalMeat = meat * 1.25;
   let totalBacon = bacon * 0.45;
   let totalCheese = cheese * 1.55;
-  let total = totalSalad + totalMeat + totalBacon + totalCheese;
 
   // const next = () => {
   //   console.log('next');
@@ -38,8 +74,10 @@ function App() {
 
   return (
     <div className="App">
-      <header className="App-header"></header>
-
+      <header className="App-header">
+        <button onClick={connectWalletHandler}></button>
+        <p style="color:red">{error}</p>
+      </header>
       <div
         style={{
           display: "flex",
@@ -70,35 +108,46 @@ function App() {
               value={salad}
               onChange={(e) => {
                 setSalad(e.target.value);
+                setTotal(totalSalad + totalMeat + totalBacon + totalCheese);
               }}
               max="3"
+              min="0"
             />
             <label>Bacon</label>
             <input
               type="number"
               max="3"
+              min="0"
               value={bacon}
               onChange={(e) => {
                 setBacon(e.target.value);
+
+                setTotal(totalSalad + totalMeat + totalBacon + totalCheese);
               }}
             />
             <label>Cheese</label>
             <input
               type="number"
               max="3"
+              min="0"
               value={cheese}
               onChange={(e) => {
                 setCheese(e.target.value);
+
+                setTotal(totalSalad + totalMeat + totalBacon + totalCheese);
               }}
             />
-            <label>Meat</label>
+            <label>Beef Patty</label>
             <input
               value={meat}
               onChange={(e) => {
                 setMeat(e.target.value);
+
+                setTotal(totalSalad + totalMeat + totalBacon + totalCheese);
               }}
               type="number"
               max="4"
+              min="0"
             />
             <p>
               <table class="GeneratedTable">
@@ -138,7 +187,9 @@ function App() {
                 </tbody>
               </table>
             </p>
-            <button type="submit">Order</button>
+            <button type="submit" onClick={sendAmountOrder(total)}>
+              Order
+            </button>
             <p>Dont have XDC? Swap Eth for XDC now.</p>
           </form>
         </div>
