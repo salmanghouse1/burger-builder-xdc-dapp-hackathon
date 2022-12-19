@@ -21,6 +21,10 @@ node package manaager
 3. to compile smart contracts go to package.json and enter your contract filename for "compile".
    "npm run compile" or "truffle compile"
 
+# Demo
+
+![caption](https://youtu.be/501Js7am9Uk / GIF)
+
 # Packages Used:
 
     "@openzeppelin/contracts": "^4.8.0",
